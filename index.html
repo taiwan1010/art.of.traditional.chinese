@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Art of Traditional Chinese — Learn Taiwan Mandarin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --coral:#D85A30;--coral-light:#FAECE7;--coral-mid:#F5C4B3;--coral-dark:#993C1D;--coral-darker:#712B13;
+  --teal:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#0F6E56;
+  --text:#1a1a1a;--text-mid:#555;--text-muted:#888;
+  --bg:#fff;--bg-soft:#FAF8F5;--bg-surface:#F4F1EC;
+  --border:#e8e4de;--border-mid:#d4cfc8;
+  --radius:10px;--radius-lg:16px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg);line-height:1.6;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:0.5px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px;}
+.nav-logo{font-family:'Noto Serif TC',serif;font-size:1.1rem;color:var(--coral);font-weight:600;text-decoration:none;}
+.nav-links{display:flex;gap:1.5rem;}
+.nav-links a{font-size:13px;color:var(--text-mid);text-decoration:none;transition:color .15s;}
+.nav-links a:hover{color:var(--coral);}
+.nav-cta{background:var(--coral);color:#fff;font-size:13px;font-weight:500;padding:8px 18px;border-radius:99px;text-decoration:none;border:none;cursor:pointer;transition:opacity .15s;}
+.nav-cta:hover{opacity:.88;}
+
+/* HERO */
+.hero{background:var(--bg-soft);padding:5rem 2rem 4rem;text-align:center;border-bottom:0.5px solid var(--border);}
+.hero-badge{display:inline-block;background:var(--coral-light);color:var(--coral-dark);font-size:11px;font-weight:500;letter-spacing:.08em;padding:5px 16px;border-radius:99px;margin-bottom:1.5rem;border:0.5px solid var(--coral-mid);}
+.hero h1{font-family:'Noto Serif TC',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.15;margin-bottom:1rem;max-width:700px;margin-left:auto;margin-right:auto;}
+.hero h1 em{color:var(--coral);font-style:normal;}
+.hero-sub{font-size:1.05rem;color:var(--text-mid);max-width:480px;margin:0 auto 2rem;line-height:1.7;}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;}
+.btn-primary{background:var(--coral);color:#fff;border:none;padding:13px 28px;border-radius:99px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;transition:opacity .15s;display:inline-block;}
+.btn-primary:hover{opacity:.88;}
+.btn-outline{background:transparent;color:var(--coral);border:1.5px solid var(--coral);padding:12px 26px;border-radius:99px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;transition:background .15s;display:inline-block;}
+.btn-outline:hover{background:var(--coral-light);}
+.bp-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;}
+.bp{background:var(--bg);border:0.5px solid var(--coral-mid);border-radius:var(--radius);padding:10px 12px;text-align:center;min-width:52px;}
+.bp .zh{font-family:'Noto Serif TC',serif;font-size:1.5rem;color:var(--coral);display:block;line-height:1.2;}
+.bp .hint{font-size:10px;color:var(--text-muted);margin-top:3px;}
+
+/* TAGLINE STRIP */
+.tagline-strip{background:var(--coral);color:#fff;text-align:center;padding:1rem 2rem;font-size:14px;font-style:italic;letter-spacing:.02em;}
+
+/* LEVELS */
+.levels-section{padding:5rem 2rem;max-width:900px;margin:0 auto;}
+.section-eyebrow{font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--coral);text-transform:uppercase;margin-bottom:8px;}
+.section-title{font-family:'Noto Serif TC',serif;font-size:1.8rem;font-weight:600;margin-bottom:.5rem;}
+.section-desc{font-size:14px;color:var(--text-mid);margin-bottom:3rem;line-height:1.7;}
+.levels-list{display:flex;flex-direction:column;gap:12px;}
+.level-row{display:flex;align-items:center;gap:1.25rem;background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem 1.4rem;cursor:pointer;transition:border-color .15s,background .15s;text-decoration:none;color:inherit;}
+.level-row:hover{border-color:var(--coral);background:var(--coral-light);}
+.level-row.locked{opacity:.45;cursor:not-allowed;pointer-events:none;}
+.lv-badge{width:48px;height:48px;border-radius:var(--radius);background:var(--coral-light);border:0.5px solid var(--coral-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.lv-badge .lv-num{font-size:11px;font-weight:500;color:var(--coral-dark);}
+.lv-badge .lv-sym{font-family:'Noto Serif TC',serif;font-size:1.3rem;color:var(--coral);}
+.lv-info{flex:1;}
+.lv-name{font-size:15px;font-weight:500;color:var(--text);margin-bottom:2px;}
+.lv-desc{font-size:12px;color:var(--text-muted);}
+.lv-tag{font-size:11px;font-weight:500;background:var(--coral-light);color:var(--coral-dark);padding:4px 12px;border-radius:99px;flex-shrink:0;border:0.5px solid var(--coral-mid);}
+.lv-tag.locked-tag{background:var(--bg-surface);color:var(--text-muted);border-color:var(--border);}
+
+/* PAGE SYSTEM */
+.page{display:none;}
+.page.active{display:block;}
+
+/* SECRET CODE PAGE */
+.lesson-wrap{max-width:860px;margin:0 auto;padding:2.5rem 2rem 4rem;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--text-mid);text-decoration:none;margin-bottom:2rem;cursor:pointer;border:none;background:none;padding:0;}
+.back-btn:hover{color:var(--coral);}
+.lesson-header{margin-bottom:2.5rem;}
+.lesson-eyebrow{font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--coral);text-transform:uppercase;margin-bottom:6px;}
+.lesson-title{font-family:'Noto Serif TC',serif;font-size:2rem;font-weight:600;margin-bottom:.5rem;}
+.lesson-sub{font-size:14px;color:var(--text-mid);line-height:1.7;max-width:560px;}
+.progress-bar{height:4px;background:var(--bg-surface);border-radius:2px;margin-bottom:6px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--coral);border-radius:2px;transition:width .4s;}
+.progress-label{font-size:11px;color:var(--text-muted);margin-bottom:2rem;}
+.cat-tabs{display:flex;gap:6px;margin-bottom:1.2rem;flex-wrap:wrap;}
+.ctab{padding:7px 18px;font-size:13px;font-weight:500;border-radius:99px;border:0.5px solid var(--border-mid);background:transparent;color:var(--text-mid);cursor:pointer;transition:all .15s;}
+.ctab.on{background:var(--coral);color:#fff;border-color:var(--coral);}
+.ctab:hover:not(.on){background:var(--bg-surface);}
+.cat-desc{font-size:13px;color:var(--text-mid);margin-bottom:1.2rem;line-height:1.6;padding:10px 14px;background:var(--bg-soft);border-radius:var(--radius);border-left:2.5px solid var(--coral);border-radius:0 var(--radius) var(--radius) 0;}
+.sym-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px;margin-bottom:1.5rem;}
+.sym-cell{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius);padding:12px 6px 10px;text-align:center;cursor:pointer;transition:all .15s;}
+.sym-cell:hover{border-color:var(--coral);}
+.sym-cell.sel{border-color:var(--coral);background:var(--coral-light);}
+.sym-cell.done{border-color:var(--teal);background:var(--teal-light);}
+.sym-cell .sym{font-family:'Noto Serif TC',serif;font-size:1.7rem;color:var(--text);display:block;line-height:1.2;}
+.sym-cell.done .sym{color:var(--teal-dark);}
+.sym-cell .sym-hint{font-size:10px;color:var(--text-muted);margin-top:4px;}
+.detail-card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:1.4rem 1.6rem;margin-bottom:2rem;}
+.detail-top{display:flex;align-items:flex-start;gap:1.5rem;}
+.big-sym{font-family:'Noto Serif TC',serif;font-size:4.5rem;color:var(--coral);line-height:1;flex-shrink:0;width:80px;text-align:center;}
+.detail-right{flex:1;}
+.detail-sound-label{font-size:12px;color:var(--text-muted);margin-bottom:2px;}
+.detail-sound{font-size:1rem;font-weight:500;color:var(--text);margin-bottom:12px;}
+.audio-btn{display:inline-flex;align-items:center;gap:6px;background:var(--bg-soft);border:0.5px solid var(--border-mid);border-radius:99px;padding:6px 14px;font-size:12px;color:var(--text-mid);cursor:pointer;margin-bottom:14px;transition:all .15s;}
+.audio-btn:hover{border-color:var(--coral);color:var(--coral);}
+.audio-icon{width:14px;height:14px;background:var(--coral);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;}
+.audio-icon::after{content:'';border-left:6px solid #fff;border-top:4px solid transparent;border-bottom:4px solid transparent;margin-left:2px;}
+.memory-box{background:var(--coral-light);border:0.5px solid var(--coral-mid);border-radius:var(--radius);padding:10px 14px;margin-bottom:12px;}
+.memory-label{font-size:10px;font-weight:500;letter-spacing:.07em;color:var(--coral-dark);margin-bottom:4px;text-transform:uppercase;}
+.memory-text{font-size:13px;color:var(--coral-darker);line-height:1.6;}
+.ex-label{font-size:10px;font-weight:500;letter-spacing:.07em;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;}
+.ex-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.ex-chip{background:var(--bg-surface);border-radius:var(--radius);padding:6px 12px;font-size:13px;color:var(--text);}
+.ex-chip .zh{font-family:'Noto Serif TC',serif;font-size:.95rem;color:var(--coral);margin-right:5px;}
+.mark-btn{padding:7px 18px;border-radius:99px;font-size:12px;font-weight:500;cursor:pointer;border:0.5px solid var(--teal);background:var(--teal);color:#fff;transition:opacity .15s;}
+.mark-btn:hover{opacity:.85;}
+.mark-btn.undo{background:var(--bg-surface);color:var(--text-mid);border-color:var(--border-mid);}
+.divider{border:none;border-top:0.5px solid var(--border);margin:2rem 0;}
+.combo-title{font-size:16px;font-weight:500;margin-bottom:4px;}
+.combo-desc{font-size:13px;color:var(--text-mid);margin-bottom:1.5rem;line-height:1.6;}
+.combo-pickers{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.25rem;}
+.combo-group{}
+.combo-group-label{font-size:10px;font-weight:500;letter-spacing:.07em;color:var(--text-muted);margin-bottom:7px;text-transform:uppercase;}
+.combo-btns{display:flex;gap:5px;flex-wrap:wrap;}
+.cpick{padding:5px 12px;font-size:1rem;font-family:'Noto Serif TC',serif;border-radius:99px;border:0.5px solid var(--border-mid);background:transparent;color:var(--text);cursor:pointer;transition:all .15s;}
+.cpick:hover{border-color:var(--coral);color:var(--coral);}
+.cpick.on{background:var(--coral-light);border-color:var(--coral);color:var(--coral-dark);}
+.combo-builder{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:1rem;}
+.combo-slot{width:58px;height:66px;border:1.5px dashed var(--border-mid);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif TC',serif;font-size:1.5rem;color:var(--coral);transition:all .15s;background:var(--bg);}
+.combo-slot.filled{border-style:solid;border-color:var(--coral);background:var(--coral-light);}
+.combo-slot .empty-label{font-family:'DM Sans',sans-serif;font-size:10px;color:var(--text-muted);}
+.combo-plus{font-size:1.1rem;color:var(--text-muted);}
+.try-btn{background:var(--coral);color:#fff;border:none;border-radius:99px;padding:10px 22px;font-size:13px;font-weight:500;cursor:pointer;transition:opacity .15s;}
+.try-btn:hover{opacity:.88;}
+.clear-btn{background:transparent;border:0.5px solid var(--border-mid);border-radius:99px;padding:10px 18px;font-size:13px;color:var(--text-mid);cursor:pointer;}
+.combo-result{background:var(--bg-soft);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.25rem;min-height:56px;display:flex;align-items:center;gap:14px;}
+.result-char{font-family:'Noto Serif TC',serif;font-size:2.2rem;color:var(--text);}
+.result-msg{font-size:13px;color:var(--text-mid);line-height:1.5;}
+.result-msg.hit{color:var(--teal-dark);}
+.result-msg.miss{color:#A32D2D;}
+
+/* COMING SOON PAGE */
+.coming-wrap{max-width:600px;margin:0 auto;padding:6rem 2rem;text-align:center;}
+.coming-sym{font-family:'Noto Serif TC',serif;font-size:4rem;color:var(--coral);margin-bottom:1.5rem;}
+.coming-title{font-family:'Noto Serif TC',serif;font-size:1.6rem;font-weight:600;margin-bottom:.75rem;}
+.coming-desc{font-size:14px;color:var(--text-mid);line-height:1.7;margin-bottom:2rem;}
+
+/* FOOTER */
+footer{border-top:0.5px solid var(--border);padding:2rem;text-align:center;}
+footer p{font-size:12px;color:var(--text-muted);}
+footer strong{color:var(--text);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#" onclick="showPage('home')">藝・Traditional Chinese</a>
+  <div class="nav-links">
+    <a href="#" onclick="showPage('home')">Levels</a>
+    <a href="#" onclick="showPage('secret')">Secret Code</a>
+  </div>
+  <a class="nav-cta" href="#" onclick="showPage('secret')">Start free →</a>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="page-home" class="page active">
+
+  <div class="hero">
+    <div class="hero-badge">Taiwan Mandarin · 繁體中文 · For beginners</div>
+    <h1>學中文，<em>從台灣開始</em></h1>
+    <p class="hero-sub">Learn Traditional Chinese the way it's spoken in Taiwan — with Zhuyin, real culture, and zero shortcuts.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#" onclick="showPage('secret')">Start with Secret Code →</a>
+      <a class="btn-outline" href="#levels">See all levels</a>
+    </div>
+    <div class="bp-row">
+      <div class="bp"><span class="zh">ㄅ</span><span class="hint">not b</span></div>
+      <div class="bp"><span class="zh">ㄆ</span><span class="hint">not p</span></div>
+      <div class="bp"><span class="zh">ㄇ</span><span class="hint">not m</span></div>
+      <div class="bp"><span class="zh">ㄈ</span><span class="hint">not f</span></div>
+      <div class="bp"><span class="zh">ㄉ</span><span class="hint">not d</span></div>
+      <div class="bp"><span class="zh">ㄊ</span><span class="hint">not t</span></div>
+      <div class="bp"><span class="zh">ㄋ</span><span class="hint">not n</span></div>
+      <div class="bp"><span class="zh">ㄌ</span><span class="hint">not l</span></div>
+    </div>
+  </div>
+
+  <div class="tagline-strip">
+    "With great language comes great responsibility — learn the right one."
+  </div>
+
+  <div class="levels-section" id="levels">
+    <div class="section-eyebrow">Your journey</div>
+    <div class="section-title">Seven levels, one island</div>
+    <div class="section-desc">Each level is themed around something distinctly Taiwanese — unlock them in order, or jump ahead if you dare.</div>
+
+    <div class="levels-list">
+      <a class="level-row" href="#" onclick="showPage('secret')">
+        <div class="lv-badge"><span class="lv-sym">ㄅ</span></div>
+        <div class="lv-info">
+          <div class="lv-name">Level 0 — Secret Code</div>
+          <div class="lv-desc">Zhuyin (注音) · 37 symbols · The foundation of everything</div>
+        </div>
+        <div class="lv-tag">Start here</div>
+      </a>
+      <a class="level-row locked" href="#">
+        <div class="lv-badge"><span class="lv-sym">你</span></div>
+        <div class="lv-info">
+          <div class="lv-name">Level 1 — Ni Hao</div>
+          <div class="lv-desc">Greetings, introductions, basic conversation</div>
+        </div>
+        <div class="lv-tag locked-tag">Coming soon</div>
+      </a>
+      <a class="level-row locked" href="#">
+        <div class="lv-badge"><span class="lv-sym">茶</span></div>
+        <div class="lv-info">
+          <div class="lv-name">Level 2 — Bubble Tea</div>
+          <div class="lv-desc">Food, ordering, night market survival</div>
+        </div>
+        <div class="lv-tag locked-tag">Coming soon</div>
+      </a>
+      <a class="level-row locked" href="#">
+        <div class="lv-badge"><span class="lv-sym">島</span></div>
+        <div class="lv-info">
+          <div class="lv-name">Level 3 — Formosa</div>
+          <div class="lv-desc">Travel, transport, asking for directions</div>
+        </div>
+        <div class="lv-tag locked-tag">Coming soon</div>
+      </a>
+      <a class="level-row locked" href="#">
+        <div class="lv-badge"><span class="lv-sym">媽</span></div>
+        <div class="lv-info">
+          <div class="lv-name">Level 4 — Mazu</div>
+          <div class="lv-desc">Religion, festivals, traditional customs</div>
+        </div>
+        <div class="lv-tag locked-tag">Coming soon</div>
+      </a>
+      <a class="level-row locked" href="#">
+        <div class="lv-badge"><span class="lv-sym">積</span></div>
+        <div class="lv-info">
+          <div class="lv-name">Level 5 — TSMC</div>
+          <div class="lv-desc">Business, workplace, tech vocabulary</div>
+        </div>
+        <div class="lv-tag locked-tag">Coming soon</div>
+      </a>
+      <a class="level-row locked" href="#">
+        <div class="lv-badge"><span class="lv-sym">頂</span></div>
+        <div class="lv-info">
+          <div class="lv-name">Level 6 — 101</div>
+          <div class="lv-desc">Slang, memes, internet culture, native-level expression</div>
+        </div>
+        <div class="lv-tag locked-tag">Coming soon</div>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <p><strong>Art of Traditional Chinese</strong> · Taiwan Mandarin · 繁體中文 · 注音符號<br/>Made in Taiwan, for the world.</p>
+  </footer>
+</div>
+
+<!-- SECRET CODE PAGE -->
+<div id="page-secret" class="page">
+  <div class="lesson-wrap">
+    <button class="back-btn" onclick="showPage('home')">← Back to levels</button>
+    <div class="lesson-header">
+      <div class="lesson-eyebrow">Level 0</div>
+      <div class="lesson-title">Secret Code — 注音符號</div>
+      <div class="lesson-sub">Taiwan uses its own phonetic system — Zhuyin. 37 symbols, each with a shape you can remember. No Roman letters. No shortcuts. Just the code.</div>
+    </div>
+
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+    <div class="progress-label" id="prog-label">0 / 37 symbols learned</div>
+
+    <div class="cat-tabs">
+      <button class="ctab on" onclick="switchCat('c')">Consonants</button>
+      <button class="ctab" onclick="switchCat('s')">Semivowels</button>
+      <button class="ctab" onclick="switchCat('v')">Vowels</button>
+    </div>
+    <div class="cat-desc" id="cat-desc">21 consonants — the opening sound of a syllable. Each has a visual and sensory memory hook.</div>
+
+    <div class="sym-grid" id="sym-grid"></div>
+
+    <div class="detail-card" id="detail-card">
+      <div style="color:var(--text-muted);font-size:13px;">Click any symbol to explore it.</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="combo-title">Combination builder</div>
+    <div class="combo-desc">Pick one from each group and see if they form a real syllable. Not every combination works — that's part of the puzzle.</div>
+
+    <div class="combo-pickers">
+      <div class="combo-group">
+        <div class="combo-group-label">Consonant (optional)</div>
+        <div class="combo-btns" id="combo-c"></div>
+      </div>
+      <div class="combo-group">
+        <div class="combo-group-label">Semivowel (optional)</div>
+        <div class="combo-btns" id="combo-s"></div>
+      </div>
+      <div class="combo-group">
+        <div class="combo-group-label">Vowel (optional)</div>
+        <div class="combo-btns" id="combo-v"></div>
+      </div>
+    </div>
+
+    <div class="combo-builder">
+      <div class="combo-slot" id="slot-c"><span class="empty-label">C</span></div>
+      <div class="combo-plus">+</div>
+      <div class="combo-slot" id="slot-s"><span class="empty-label">S</span></div>
+      <div class="combo-plus">+</div>
+      <div class="combo-slot" id="slot-v"><span class="empty-label">V</span></div>
+      <button class="try-btn" onclick="tryCombo()">Try it</button>
+      <button class="clear-btn" onclick="clearCombo()">Clear</button>
+    </div>
+
+    <div class="combo-result" id="combo-result">
+      <div class="result-msg">Select symbols above and press Try it.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DATA = {
+  c:[
+    {s:'ㄅ',cat:'Consonant',mem:'Looks like a <strong>b</strong>ird perched on a branch — same opening shape, same feeling as "b" in "bat"',ex:[{w:'爸爸',en:'dad'},{w:'杯子',en:'cup'}]},
+    {s:'ㄆ',cat:'Consonant',mem:'A <strong>p</strong>uff of air shooting out — hold your hand in front of your mouth and feel it when you say this',ex:[{w:'朋友',en:'friend'},{w:'蘋果',en:'apple'}]},
+    {s:'ㄇ',cat:'Consonant',mem:'The shape of a <strong>m</strong>outh — two lips pressing together, just like when you hum "mmm"',ex:[{w:'媽媽',en:'mom'},{w:'門',en:'door'}]},
+    {s:'ㄈ',cat:'Consonant',mem:'Air rushing through teeth like a <strong>f</strong>an — upper teeth touch lower lip, same as English "f"',ex:[{w:'飛機',en:'airplane'},{w:'方便',en:'convenient'}]},
+    {s:'ㄉ',cat:'Consonant',mem:'A <strong>d</strong>oor lying on its side — tongue taps the roof of your mouth, no air puff',ex:[{w:'大家',en:'everyone'},{w:'電話',en:'phone'}]},
+    {s:'ㄊ',cat:'Consonant',mem:'A <strong>t</strong>ool hanging on the wall — same tongue position as ㄉ but with a burst of air',ex:[{w:'台灣',en:'Taiwan'},{w:'天氣',en:'weather'}]},
+    {s:'ㄋ',cat:'Consonant',mem:'<strong>N</strong>ails hammered into a board — tongue touches the ridge behind your top teeth, air hums through your nose',ex:[{w:'你好',en:'hello'},{w:'奶茶',en:'milk tea'}]},
+    {s:'ㄌ',cat:'Consonant',mem:'A tall <strong>l</strong>adder — tongue flicks up and comes back down, just like English "l"',ex:[{w:'來',en:'come'},{w:'路',en:'road'}]},
+    {s:'ㄍ',cat:'Consonant',mem:'A <strong>g</strong>un shape — back of tongue touches the soft palate, hard stop, no air',ex:[{w:'國語',en:'Mandarin'},{w:'高',en:'tall'}]},
+    {s:'ㄎ',cat:'Consonant',mem:'A <strong>k</strong>ite string pulled taut — same spot as ㄍ but with a strong puff of air',ex:[{w:'看',en:'look'},{w:'咖啡',en:'coffee'}]},
+    {s:'ㄏ',cat:'Consonant',mem:'A <strong>h</strong>orse exhaling — breath flows freely from the back of the throat, like fogging up a window',ex:[{w:'好',en:'good'},{w:'喝',en:'drink'}]},
+    {s:'ㄐ',cat:'Consonant',mem:'A sharp <strong>j</strong>ab — tongue pushes toward the hard palate, softer and higher than English "j"',ex:[{w:'雞排',en:'chicken cutlet'},{w:'叫',en:'to call'}]},
+    {s:'ㄑ',cat:'Consonant',mem:'Like <strong>ch</strong>eering — same position as ㄐ with a burst of air, like "ch" in "cheese" but lighter',ex:[{w:'去',en:'go'},{w:'錢',en:'money'}]},
+    {s:'ㄒ',cat:'Consonant',mem:'<strong>Sh</strong>ushing but with a smile — teeth slightly parted, tongue high, air hisses through',ex:[{w:'謝謝',en:'thank you'},{w:'小',en:'small'}]},
+    {s:'ㄓ',cat:'Consonant',mem:'Tongue curls <strong>back</strong> — tip curls toward the back of the mouth roof, like "j" in "jar"',ex:[{w:'這',en:'this'},{w:'中文',en:'Chinese'}]},
+    {s:'ㄔ',cat:'Consonant',mem:'<strong>Ch</strong>omping with tongue back — same curl as ㄓ, add a puff of air, like "ch" in "church"',ex:[{w:'吃',en:'eat'},{w:'茶',en:'tea'}]},
+    {s:'ㄕ',cat:'Consonant',mem:'<strong>Sh</strong>irt collar — tongue curls back and air flows over it, like "sh" in "shirt"',ex:[{w:'是',en:'is'},{w:'手機',en:'smartphone'}]},
+    {s:'ㄖ',cat:'Consonant',mem:'<strong>R</strong>umbling engine — tongue curled back, voice buzzes, like a cross between "r" and "zh"',ex:[{w:'人',en:'person'},{w:'日本',en:'Japan'}]},
+    {s:'ㄗ',cat:'Consonant',mem:'Bee <strong>z</strong>zzing — tongue flat and forward, like "ds" at the end of "beds"',ex:[{w:'字',en:'character'},{w:'走',en:'walk'}]},
+    {s:'ㄘ',cat:'Consonant',mem:'<strong>Ts</strong>unami wave — like "ts" in "cats", a hissing burst with flat tongue',ex:[{w:'菜',en:'vegetable'},{w:'草莓',en:'strawberry'}]},
+    {s:'ㄙ',cat:'Consonant',mem:'A <strong>s</strong>nake hissing — tongue flat, air flows over the tip, exactly like "s" in "sun"',ex:[{w:'三',en:'three'},{w:'所以',en:'therefore'}]},
+  ],
+  s:[
+    {s:'ㄧ',cat:'Semivowel',mem:'A single vertical stroke — lips spread wide like a big smile, the "ee" in "see". The simplest shape for the simplest sound.',ex:[{w:'一',en:'one'},{w:'椅子',en:'chair'}]},
+    {s:'ㄨ',cat:'Semivowel',mem:'Lips round like blowing out a birthday candle — the "oo" in "moon". Round and full.',ex:[{w:'五',en:'five'},{w:'我',en:'I / me'}]},
+    {s:'ㄩ',cat:'Semivowel',mem:'Say "ee" — then round your lips as if you\'re saying "oo". Both at once. There\'s no English version of this sound.',ex:[{w:'魚',en:'fish'},{w:'月亮',en:'moon'}]},
+  ],
+  v:[
+    {s:'ㄚ',cat:'Vowel',mem:'<strong>Ah!</strong> — mouth opens as wide as it can go. Like when a doctor says "say aaah". The shape looks like arms raised, yelling.',ex:[{w:'啊',en:'ah! (exclamation)'},{w:'媽',en:'mom'}]},
+    {s:'ㄛ',cat:'Vowel',mem:'<strong>Oh!</strong> — lips form a circle in surprise. Round but not as wide as ㄚ.',ex:[{w:'我',en:'I / me'},{w:'喔',en:'oh (particle)'}]},
+    {s:'ㄜ',cat:'Vowel',mem:'A grunt — mouth half open, no lip rounding, no smile. Like the sound you make when lifting something heavy: "ugh".',ex:[{w:'餓',en:'hungry'},{w:'呢',en:'(question particle)'}]},
+    {s:'ㄝ',cat:'Vowel',mem:'<strong>Eh?</strong> — like the Canadian "eh?" Mouth slightly open, relaxed.',ex:[{w:'耶',en:'yeah! (exclamation)'},{w:'謝',en:'thank'}]},
+    {s:'ㄞ',cat:'Vowel',mem:'Sounds exactly like the English word <strong>"eye"</strong> — or the letter "I". Start open like ㄚ, glide to a small ㄧ.',ex:[{w:'愛',en:'love'},{w:'台灣',en:'Taiwan'}]},
+    {s:'ㄟ',cat:'Vowel',mem:'Like saying <strong>"hey"</strong> — the "ey" sound at the end. Start mid-open, glide up.',ex:[{w:'喂',en:'hello (phone)'},{w:'美',en:'beautiful'}]},
+    {s:'ㄠ',cat:'Vowel',mem:'<strong>Ow!</strong> — like stubbing your toe. Mouth opens wide then rounds into a small "oo".',ex:[{w:'好',en:'good'},{w:'貓',en:'cat'}]},
+    {s:'ㄡ',cat:'Vowel',mem:'Like <strong>"oh"</strong> in "go" — lips start relaxed then round forward. A slow glide.',ex:[{w:'走',en:'go / walk'},{w:'狗',en:'dog'}]},
+    {s:'ㄢ',cat:'Vowel',mem:'Like <strong>"an"</strong> in "can" — open vowel followed by tongue touching behind the teeth.',ex:[{w:'飯',en:'rice / meal'},{w:'台灣',en:'Taiwan'}]},
+    {s:'ㄣ',cat:'Vowel',mem:'Like the <strong>"-en"</strong> in "open" — tongue rises at the end to close the sound.',ex:[{w:'人',en:'person'},{w:'真',en:'real / true'}]},
+    {s:'ㄤ',cat:'Vowel',mem:'Like <strong>"ang"</strong> in "long" — open ㄚ vowel, then tongue goes back for the ng sound.',ex:[{w:'忙',en:'busy'},{w:'逛街',en:'window shopping'}]},
+    {s:'ㄥ',cat:'Vowel',mem:'The <strong>ng</strong> hum — back of tongue rises to close, like the "-ng" in "sing".',ex:[{w:'朋友',en:'friend'},{w:'等',en:'wait'}]},
+    {s:'ㄦ',cat:'Vowel',mem:'<strong>Er...</strong> — like hesitating in English. A slight r-colour at the end. Unique to Mandarin.',ex:[{w:'兒子',en:'son'},{w:'耳朵',en:'ear'}]},
+  ]
+};
+
+const COMBOS={'ㄅㄚ':'爸 / 把 / 八 — dad, to hold, eight','ㄇㄚ':'媽 — mom','ㄊㄞㄨㄢ':'台灣 — Taiwan!','ㄊㄞ':'台 — platform, stage, Taiwan','ㄨㄢ':'灣 — bay (as in Tai-wan!)','ㄏㄠ':'好 — good','ㄞ':'愛 — love','ㄟ':'欸 — hey!','ㄇㄠ':'貓 — cat','ㄍㄡ':'狗 — dog','ㄔㄚ':'茶 — tea','ㄈㄟ':'飛 — fly','ㄌㄞ':'來 — come','ㄗㄡ':'走 — go','ㄖㄣ':'人 — person','ㄓㄣ':'真 — real / true','ㄇㄤ':'忙 — busy','ㄉㄥ':'等 — wait','ㄌㄨ':'路 — road','ㄧ':'一 — one','ㄨ':'五 / 無 — five / nothing','ㄩ':'魚 — fish','ㄚ':'啊 — ah!','ㄛ':'喔 — oh!','ㄅㄟ':'杯 — cup','ㄆㄥ':'朋 — friend (part)','ㄉㄚ':'大 — big','ㄒㄧ':'西 — west','ㄕㄡ':'手 — hand','ㄅㄠ':'包 — bag / bun','ㄋㄠ':'腦 — brain','ㄏㄜ':'喝 — drink','ㄎㄢ':'看 — look','ㄙㄢ':'三 — three','ㄧㄡ':'有 — to have','ㄨㄛ':'我 — I / me','ㄩㄝ':'月 — moon / month','ㄧㄣ':'音 — sound','ㄨㄣ':'問 — ask','ㄏㄞ':'還 — still / also','ㄇㄟ':'美 — beautiful','ㄉㄨ':'都 — all / both','ㄔㄞ':'拆 — tear apart','ㄋㄟ':'那 — that (spoken)','ㄒㄧㄠ':'小 — small','ㄉㄧㄢ':'點 — point / order','ㄔㄢ':'饞 — craving food'};
+
+let learned=new Set(),curCat='c',selSym=null,comboC=null,comboS=null,comboV=null;
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function switchCat(cat){
+  curCat=cat;
+  document.querySelectorAll('.ctab').forEach((t,i)=>t.classList.toggle('on',['c','s','v'][i]===cat));
+  const descs={c:'21 consonants — the opening sound of a syllable. Each has a visual and sensory memory hook.',s:'3 semivowels — the linking sound that bridges consonant and vowel. Short but essential.',v:'13 vowels — the heart of every syllable, where the tone lives.'};
+  document.getElementById('cat-desc').textContent=descs[cat];
+  selSym=null;
+  renderGrid();
+  document.getElementById('detail-card').innerHTML='<div style="color:var(--text-muted);font-size:13px;">Click any symbol to explore it.</div>';
+}
+
+function renderGrid(){
+  const g=document.getElementById('sym-grid');
+  g.innerHTML='';
+  DATA[curCat].forEach(item=>{
+    const d=document.createElement('div');
+    d.className='sym-cell'+(learned.has(item.s)?' done':'')+(selSym===item.s?' sel':'');
+    d.innerHTML='<span class="sym">'+item.s+'</span><span class="sym-hint">'+item.cat+'</span>';
+    d.onclick=()=>showDetail(item);
+    g.appendChild(d);
+  });
+}
+
+function showDetail(item){
+  selSym=item.s;
+  renderGrid();
+  const isDone=learned.has(item.s);
+  document.getElementById('detail-card').innerHTML=`
+    <div class="detail-top">
+      <div class="big-sym">${item.s}</div>
+      <div class="detail-right">
+        <div class="detail-sound-label">${item.cat} · position ${DATA[curCat].findIndex(x=>x.s===item.s)+1} of ${DATA[curCat].length}</div>
+        <button class="audio-btn" onclick="playAudio('${item.s}')"><span class="audio-icon"></span> Play sound · coming soon</button>
+        <div class="memory-box"><div class="memory-label">Memory hook</div><div class="memory-text">${item.mem}</div></div>
+        <div class="ex-label">Example words</div>
+        <div class="ex-row">${item.ex.map(e=>`<div class="ex-chip"><span class="zh">${e.w}</span>${e.en}</div>`).join('')}</div>
+        <button class="mark-btn ${isDone?'undo':''}" onclick="toggleLearned('${item.s}')">${isDone?'Unmark':'Mark as learned'}</button>
+      </div>
+    </div>`;
+}
+
+function playAudio(sym){
+  alert('Audio for '+sym+' — coming soon! (Drop your .mp3 files into the /audio/ folder)');
+}
+
+function toggleLearned(s){
+  if(learned.has(s))learned.delete(s);else learned.add(s);
+  const item=[...DATA.c,...DATA.s,...DATA.v].find(x=>x.s===s);
+  showDetail(item);
+  renderGrid();
+  const n=learned.size;
+  document.getElementById('prog-fill').style.width=Math.round(n/37*100)+'%';
+  document.getElementById('prog-label').textContent=n+' / 37 symbols learned';
+}
+
+function renderComboPickers(){
+  ['c','s','v'].forEach(cat=>{
+    const el=document.getElementById('combo-'+cat);
+    el.innerHTML='';
+    const src=cat==='c'?DATA.c.slice(0,12):DATA[cat];
+    src.forEach(item=>{
+      const b=document.createElement('button');
+      b.className='cpick'+((cat==='c'&&comboC===item.s)||(cat==='s'&&comboS===item.s)||(cat==='v'&&comboV===item.s)?' on':'');
+      b.textContent=item.s;
+      b.onclick=()=>pickCombo(cat,item.s);
+      el.appendChild(b);
+    });
+  });
+}
+
+function pickCombo(cat,s){
+  if(cat==='c')comboC=comboC===s?null:s;
+  if(cat==='s')comboS=comboS===s?null:s;
+  if(cat==='v')comboV=comboV===s?null:s;
+  updateSlots();renderComboPickers();
+}
+
+function updateSlots(){
+  const sc=document.getElementById('slot-c'),ss=document.getElementById('slot-s'),sv=document.getElementById('slot-v');
+  sc.innerHTML=comboC?comboC:'<span class="empty-label">C</span>';sc.className='combo-slot'+(comboC?' filled':'');
+  ss.innerHTML=comboS?comboS:'<span class="empty-label">S</span>';ss.className='combo-slot'+(comboS?' filled':'');
+  sv.innerHTML=comboV?comboV:'<span class="empty-label">V</span>';sv.className='combo-slot'+(comboV?' filled':'');
+}
+
+function tryCombo(){
+  const key=(comboC||'')+(comboS||'')+(comboV||'');
+  if(!key){document.getElementById('combo-result').innerHTML='<div class="result-msg">Pick at least one symbol first!</div>';return;}
+  const match=COMBOS[key];
+  const r=document.getElementById('combo-result');
+  if(match){r.innerHTML=`<div class="result-char">${comboC||''}${comboS||''}${comboV||''}</div><div class="result-msg hit">Real syllable — ${match}</div>`;}
+  else{r.innerHTML=`<div class="result-char" style="opacity:.35">${comboC||'?'}${comboS||''}${comboV||''}</div><div class="result-msg miss">This combination doesn't form a standard syllable. Try a different mix!</div>`;}
+}
+
+function clearCombo(){
+  comboC=comboS=comboV=null;
+  updateSlots();renderComboPickers();
+  document.getElementById('combo-result').innerHTML='<div class="result-msg">Select symbols above and press Try it.</div>';
+}
+
+renderGrid();renderComboPickers();
+</script>
+</body>
+</html>
